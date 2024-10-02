@@ -27,3 +27,5 @@ app.use('/api', productRouter, cardRouter, orderRouter, userRouter, purchaseRout
 app.listen(PORT, () => {
   console.log('App executing on port: ' + PORT);
 });
+
+//POST COMMENT
