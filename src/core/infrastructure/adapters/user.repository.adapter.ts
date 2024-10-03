@@ -38,16 +38,16 @@ export class UserAdapterRepository implements UserRepository<UserEntity> {
   async loginUser(email: string, password: string): Promise<UserEntity> {
     const repository = database.getRepository(UserEntity);
     const user = await repository.findOneBy({ email });
-  
+
     if (!user) {
       throw new NotFound("No existe un usuario con el correo proporcionado");
     }
   
-    const isPasswordValid = await compare(password, user.password);
-  
-    if (isPasswordValid) {
+
+    if (password !== user.password) {
       throw new NotFound("Contraseña incorrecta");
     }
+  
   
     return user;
   }
